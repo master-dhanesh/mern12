@@ -2,13 +2,15 @@ import { useState } from "react";
 
 const App = () => {
     const [fullname, setfullname] = useState("");
-    const [username, setusername] = useState("");
+    const [gender, setgender] = useState("female");
+    const [city, setcity] = useState("bhopal");
 
     const SubmitHandler = (e) => {
         e.preventDefault();
         const data = {
             fullname,
-            username,
+            gender,
+            city,
         };
         console.log(data);
     };
@@ -24,13 +26,36 @@ const App = () => {
                     onChange={(e) => setfullname(e.target.value)}
                     value={fullname}
                 />
-                <input
-                    className="p-2 rounded mr-4 "
-                    type="text"
-                    placeholder="Username"
-                    onChange={(e) => setusername(e.target.value)}
-                    value={username}
-                />
+
+                <div className="my-3">
+                    <input
+                        type="radio"
+                        value="male"
+                        onChange={(e) => setgender(e.target.value)}
+                        checked={gender == "male" ? true : false}
+                    />
+                    Male <br />
+                    <input
+                        type="radio"
+                        onChange={() => setgender("female")}
+                        checked={gender == "female" ? true : false}
+                    />
+                    Female
+                </div>
+
+                <select
+                    value={city}
+                    onChange={(e) => setcity(e.target.value)}
+                    className="block my-3"
+                >
+                    <option value="">City</option>
+                    <option value="bhopal">Bhopal</option>
+                    <option value="indore">Indore</option>
+                    <option value="gwalior">Gwalior</option>
+                    <option value="ujjain">Ujjain</option>
+                    <option value="sagar">Sagar</option>
+                </select>
+
                 <button className="py-2 px-4 bg-zinc-700 rounded text-white">
                     Submit
                 </button>
