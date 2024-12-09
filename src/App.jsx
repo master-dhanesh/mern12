@@ -1,46 +1,45 @@
-import { useForm } from "react-hook-form";
-const App = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm({
-        defaultValues: {
-            fullname: "John Doe",
-            city: "indore",
-        },
-    });
+import { nanoid } from "nanoid";
+import { useState } from "react";
 
-    const submithandler = (data) => {
-        console.log(data);
+const App = () => {
+    const [title, settitle] = useState("");
+
+    const SubmitHandler = (e) => {
+        e.preventDefault();
+        const newtask = {
+            id: nanoid(),
+            title: title,
+        };
+
+        console.log(newtask);
     };
 
     return (
-        <div className="mt-10 w-[80%] mx-auto p-10 rounded bg-zinc-200 ">
-            <h1 className="font-bold text-3xl underline mb-3">Form Handling</h1>
-            <form onSubmit={handleSubmit(submithandler)}>
+        <div className=" w-[80%] mx-auto mt-5 p-5 rounded bg-zinc-700">
+            <form
+                onSubmit={SubmitHandler}
+                className="w-[25%] flex justify-center p-3 rounded bg-zinc-600"
+            >
                 <input
-                    className="p-2 rounded mr-4 "
+                    className="p-2 rounded-tl-sm rounded-bl-sm text-xl "
                     type="text"
-                    placeholder="Full Name"
-                    {...register("fullname", {
-                        required: "Full Name is required",
-                    })}
+                    placeholder="title"
+                    onChange={(e) => settitle(e.target.value)}
+                    value={title}
                 />
-
-                {errors.fullname && (
-                    <p className="text-red-500">{errors.fullname.message}</p>
-                )}
-
-                <select {...register("city")}>
-                    <option value="bhopal">Bhopal</option>
-                    <option value="indore">Indore</option>
-                </select>
-
-                <button className="py-2 px-4 bg-zinc-700 rounded text-white">
-                    Submit
+                <button className=" text-white bg-zinc-500 text-3xl rounded-tr-sm rounded-br-sm">
+                    <i className="ri-add-fill "></i>
                 </button>
             </form>
+            <hr className="w-[50%] my-5 border bg-white h-[1px]" />
+            <ul className="text-white list-item text-xl">
+                <li className="w-[25%] list-item px-5 py-3 rounded mb-3 bg-zinc-500">
+                    Item 1
+                </li>
+                <li className="w-[25%] list-item px-5 py-3 rounded mb-3 bg-zinc-500">
+                    Item 1
+                </li>
+            </ul>
         </div>
     );
 };
