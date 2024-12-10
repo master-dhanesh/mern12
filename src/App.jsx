@@ -1,19 +1,23 @@
-import { nanoid } from "nanoid";
 import { useState } from "react";
 
 const App = () => {
     const [title, settitle] = useState("");
 
+    const [tasks, settasks] = useState([]);
+
     const SubmitHandler = (e) => {
         e.preventDefault();
-        const newtask = {
-            id: nanoid(),
-            title: title,
-        };
 
-        console.log(newtask);
+        // let copytasks = [...tasks];
+        // copytasks.push(title);
+        // settasks(copytasks);
+
+        settasks([...tasks, title]);
+
+        settitle("");
     };
 
+    console.log(tasks);
     return (
         <div className=" w-[80%] mx-auto mt-5 p-5 rounded bg-zinc-700">
             <form
@@ -21,11 +25,11 @@ const App = () => {
                 className="w-[25%] flex justify-center p-3 rounded bg-zinc-600"
             >
                 <input
-                    className="p-2 rounded-tl-sm rounded-bl-sm text-xl "
+                    className="w-full p-2 rounded-tl-sm rounded-bl-sm text-xl "
                     type="text"
                     placeholder="title"
-                    onChange={(e) => settitle(e.target.value)}
                     value={title}
+                    onChange={(e) => settitle(e.target.value)}
                 />
                 <button className=" text-white bg-zinc-500 text-3xl rounded-tr-sm rounded-br-sm">
                     <i className="ri-add-fill "></i>
