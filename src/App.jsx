@@ -1,23 +1,36 @@
+import { nanoid } from "nanoid";
 import { useState } from "react";
 
 const App = () => {
     const [title, settitle] = useState("");
-
     const [tasks, settasks] = useState([]);
 
     const SubmitHandler = (e) => {
         e.preventDefault();
-
-        // let copytasks = [...tasks];
-        // copytasks.push(title);
-        // settasks(copytasks);
-
-        settasks([...tasks, title]);
-
+        const newTask = {
+            id: nanoid(),
+            title: title,
+        };
+        settasks([...tasks, newTask]);
         settitle("");
     };
 
-    console.log(tasks);
+    let renderTasks =
+        tasks.length > 0 ? (
+            tasks.map((t, i) => (
+                <li
+                    className="w-[25%] list-item px-5 py-3 rounded mb-3 bg-zinc-500"
+                    key={t.id}
+                >
+                    {t.title}
+                </li>
+            ))
+        ) : (
+            <h1 className="w-[50%] text-green-400 text-center">
+                No Pending Task
+            </h1>
+        );
+
     return (
         <div className=" w-[80%] mx-auto mt-5 p-5 rounded bg-zinc-700">
             <form
@@ -36,14 +49,7 @@ const App = () => {
                 </button>
             </form>
             <hr className="w-[50%] my-5 border bg-white h-[1px]" />
-            <ul className="text-white list-item text-xl">
-                <li className="w-[25%] list-item px-5 py-3 rounded mb-3 bg-zinc-500">
-                    Item 1
-                </li>
-                <li className="w-[25%] list-item px-5 py-3 rounded mb-3 bg-zinc-500">
-                    Item 1
-                </li>
-            </ul>
+            <ul className="text-white list-item text-xl">{renderTasks}</ul>
         </div>
     );
 };
