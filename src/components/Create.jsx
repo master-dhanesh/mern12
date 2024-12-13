@@ -12,8 +12,11 @@ const Create = (props) => {
             id: nanoid(),
             title: title,
         };
-        settasks([...tasks, newTask]);
+        const updatedTasks = [...tasks, newTask];
+        settasks(updatedTasks);
         settitle("");
+
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     };
 
     return (

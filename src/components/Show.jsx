@@ -1,14 +1,26 @@
 const Show = (props) => {
     const { tasks, settasks } = props;
 
+    const DeleteHandler = (i) => {
+        const copytasks = [...tasks];
+        copytasks.splice(i, 1);
+        settasks(copytasks);
+        localStorage.setItem("tasks", JSON.stringify(copytasks));
+    };
+
     let renderTasks =
         tasks.length > 0 ? (
             tasks.map((t, i) => (
                 <li
-                    className="w-[25%] list-item px-5 py-3 rounded mb-3 bg-zinc-500"
+                    className="w-[25%] flex justify-between px-5 py-3 rounded mb-3 bg-zinc-500"
                     key={t.id}
                 >
-                    {t.title}
+                    <span>{t.title}</span>
+
+                    <i
+                        onClick={() => DeleteHandler(i)}
+                        className="ri-close-circle-line hover:text-red-300"
+                    ></i>
                 </li>
             ))
         ) : (
