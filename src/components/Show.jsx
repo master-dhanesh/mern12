@@ -1,3 +1,4 @@
+import "./Show.css";
 const Show = (props) => {
     const { tasks, settasks } = props;
 
@@ -29,7 +30,12 @@ const Show = (props) => {
             </h1>
         );
 
-    return <ul className="text-white list-item text-xl">{renderTasks}</ul>;
+    return (
+        <>
+            <h1 className="head">Pending Tasks</h1>
+            <ul className="text-white list-item text-xl">{renderTasks}</ul>
+        </>
+    );
 };
 
 export default Show;

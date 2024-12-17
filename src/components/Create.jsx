@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import css from "./Create.module.css";
 
 const Create = (props) => {
     const tasks = props.tasks;
@@ -24,6 +25,7 @@ const Create = (props) => {
             onSubmit={SubmitHandler}
             className="w-[25%] flex justify-center p-3 rounded bg-zinc-600"
         >
+            <h1 className={css.heading}>Form Todo</h1>
             <input
                 className="w-full p-2 rounded-tl-sm rounded-bl-sm text-xl "
                 type="text"
