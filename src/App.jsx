@@ -1,25 +1,12 @@
 import { useState } from "react";
-import Create from "./components/Create";
-import Show from "./components/Show";
-import Search from "./components/Search";
+import Child from "./components/Child";
 
 const App = () => {
-    const [tasks, settasks] = useState(
-        JSON.parse(localStorage.getItem("tasks")) || []
-    );
-
-    const headcss = { fontSize: "30px", color: "white" };
+    const [data, setdata] = useState("bahut important dataa");
     return (
-        <div className=" w-[80%] mx-auto mt-5 p-5 rounded bg-zinc-700">
-            <h1 style={{ fontSize: "30px", color: "white" }}>ToDo List App</h1>
-            <h1 style={headcss}>ToDo List App</h1>
-            <h1 className="head">ToDo List App</h1>
-
-            <Search tasks={tasks} />
-            <hr className="w-[50%] my-5 border bg-white h-[1px]" />
-            {<Create tasks={tasks} settasks={settasks} />}
-            <hr className="w-[50%] my-5 border bg-white h-[1px]" />
-            {<Show tasks={tasks} settasks={settasks} />}
+        <div className="rounded w-[80%] mx-auto p-10 bg-zinc-200">
+            <h1 className="text-xl">App Component</h1>
+            <Child data={data} />
         </div>
     );
 };
