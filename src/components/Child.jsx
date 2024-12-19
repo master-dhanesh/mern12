@@ -1,10 +1,10 @@
 import Grandchild from "./Grandchild";
 
-const Child = (props) => {
+const Child = () => {
     return (
         <div>
             <h1 className="text-lg">Child Component</h1>
-            <Grandchild data={props.data} />
+            <Grandchild />
         </div>
     );
 };
