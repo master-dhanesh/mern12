@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { taskscontext } from "../context/TasksContext";
 
-const Search = (props) => {
-    const { tasks } = props;
+const Search = () => {
+    const [tasks] = useContext(taskscontext);
+
     const [filtered, setfiltered] = useState([]);
 
     const SearchHandler = (e) => {

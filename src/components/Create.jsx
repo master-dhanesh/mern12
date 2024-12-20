@@ -1,9 +1,9 @@
 import { nanoid } from "nanoid";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { taskscontext } from "../context/TasksContext";
+const Create = () => {
+    const [tasks, settasks] = useContext(taskscontext);
 
-const Create = (props) => {
-    const tasks = props.tasks;
-    const settasks = props.settasks;
     const [title, settitle] = useState("");
 
     const SubmitHandler = (e) => {
@@ -12,8 +12,11 @@ const Create = (props) => {
             id: nanoid(),
             title: title,
         };
-        settasks([...tasks, newTask]);
+        const updatedTasks = [...tasks, newTask];
+        settasks(updatedTasks);
         settitle("");
+
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     };
 
     return (
