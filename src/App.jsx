@@ -5,6 +5,7 @@ import Products from "./components/Products";
 import Services from "./components/Services";
 import About from "./components/About";
 import { Route, Routes } from "react-router-dom";
+import ProductDetails from "./components/ProductDetails";
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/products/:id" element={<ProductDetails />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/about" element={<About />} />
             </Routes>
