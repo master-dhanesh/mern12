@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../utils/axiosconfig";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
@@ -7,9 +7,7 @@ const Products = () => {
 
     const getallproducts = async () => {
         try {
-            const { data } = await axios.get(
-                "https://fakestoreapi.com/products"
-            );
+            const { data } = await axios.get("/products");
             setproducts(data);
         } catch (error) {
             console.log(error);
@@ -30,7 +28,7 @@ const Products = () => {
                     <Link
                         key={p.id}
                         className="w-[23%]  h list-item p-2 mr-3 mb-3 rounded bg-zinc-300"
-                        to={`/products/${p.title}`}
+                        to={`/products/${p.id}`}
                     >
                         <img
                             className="object-cover w-full h-[200px]"
