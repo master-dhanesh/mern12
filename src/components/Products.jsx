@@ -1,5 +1,5 @@
 import axios from "../utils/axiosconfig";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 const Products = () => {
@@ -14,10 +14,15 @@ const Products = () => {
         }
     };
 
-    // axios
-    //     .get("https://fakestoreapi.com/products")
-    //     .then((res) => console.log(res.data))
-    //     .catch((err) => console.log(err));
+    useEffect(() => {
+        console.log("[Product.jsx] Mounted/Created");
+        getallproducts();
+
+        return () => {
+            console.log("[Product.jsx] Unmounted/Destroyed");
+            // alert("Do you want to leave this page?");
+        };
+    }, []);
 
     return (
         <div>
