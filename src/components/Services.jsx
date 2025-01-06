@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { add } from "../store/reducers/productSlice";
+import { add, asyncremove } from "../store/actions/productActions";
 
 const Services = () => {
     const { data } = useSelector((state) => state.products);
@@ -26,6 +26,8 @@ const Services = () => {
             >
                 Add Data
             </button>
+            <br /> <br />
+            <button onClick={() => dispatch(asyncremove(1))}>Remove</button>
         </div>
     );
 };
